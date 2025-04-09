@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import carsData from "./Mockdata.js";
+import { motion } from "framer-motion";
 import axios from "axios";
 function CardDetail() {
   const navigate = useNavigate();
@@ -31,7 +32,13 @@ function CardDetail() {
     <div className="card-deatil">
       {error && <h2 className="error-message">{error}</h2>}
       {car && (
-        <div className="car-detail">
+        <motion.div
+          className="car-detail"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0 }}
+          viewport={{ once: true }}
+        >
           <h5 className="card-header">
             <p>{car.make}</p>
           </h5>
@@ -80,7 +87,7 @@ function CardDetail() {
               </li>
             </ul>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );

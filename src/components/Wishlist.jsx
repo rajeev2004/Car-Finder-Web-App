@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import carsData from "./Mockdata.js";
+import { motion } from "framer-motion";
 function Wishlist() {
   const navigate = useNavigate();
   const [wishlist, setWishlist] = useState([]);
@@ -27,7 +28,14 @@ function Wishlist() {
       <div className="wishlist-items">
         {wishlist.length > 0 ? (
           wishlistCars.map((car, index) => (
-            <div className="wishlist-every-item" key={car.id}>
+            <motion.div
+              className="wishlist-every-item"
+              key={car.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.0 }}
+              viewport={{ once: true }}
+            >
               <ul className="list-group">
                 <li className="list-group-item">
                   <img src={car.image} alt="Car photo" />
@@ -68,7 +76,7 @@ function Wishlist() {
                   }
                 </li>
               </ul>
-            </div>
+            </motion.div>
           ))
         ) : (
           <p>No Cars in the WishList yet...</p>

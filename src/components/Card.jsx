@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 function Card(props) {
   const isWishlisted = props.wishlist.includes(props.id);
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <motion.div
+      className="card"
+      style={{ width: "18rem" }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.0 }}
+      viewport={{ once: true }}
+    >
       <div className="card-body">
         <ul className="list-group">
           <li className="list-group-item">
@@ -37,7 +45,7 @@ function Card(props) {
           </li>
         </ul>
       </div>
-    </div>
+    </motion.div>
   );
 }
 export default Card;
